@@ -8,39 +8,39 @@
 
   <body>
     <div class="keys">
-      <div data-key="a" class="key">
+      <div class="key" data-key="a">
         <kbd>A</kbd>
         <span class="sound">clap</span>
       </div>
-      <div data-key="s" class="key">
+      <div class="key" data-key="s">
         <kbd>S</kbd>
         <span class="sound">hihat</span>
       </div>
-      <div data-key="d" class="key">
+      <div class="key" data-key="d">
         <kbd>D</kbd>
         <span class="sound">kick</span>
       </div>
-      <div data-key="f" class="key">
+      <div class="key" data-key="f">
         <kbd>F</kbd>
         <span class="sound">openhat</span>
       </div>
-      <div data-key="g" class="key">
+      <div class="key" data-key="g">
         <kbd>G</kbd>
         <span class="sound">boom</span>
       </div>
-      <div data-key="h" class="key">
+      <div class="key" data-key="h">
         <kbd>H</kbd>
         <span class="sound">ride</span>
       </div>
-      <div data-key="j" class="key">
+      <div class="key" data-key="j">
         <kbd>J</kbd>
         <span class="sound">snare</span>
       </div>
-      <div data-key="k" class="key">
+      <div class="key" data-key="k">
         <kbd>K</kbd>
         <span class="sound">tom</span>
       </div>
-      <div data-key="l" class="key">
+      <div class="key" data-key="l">
         <kbd>L</kbd>
         <span class="sound">tink</span>
       </div>
@@ -57,8 +57,11 @@
     <audio data-key="l" src="sounds/tink.wav"></audio>
 
     <script>
-      window.addEventListener('keydown', (evt) => {
-        const $audio = document.querySelector(`audio[data-key="${evt.key}"]`);
+      const playSound = (evt) => {
+        const { key } =  evt;
+
+        const $audio = document.querySelector(`audio[data-key="${key}"]`);
+        const $key = document.querySelector(`.key[data-key="${key}"]`);
 
         if (!$audio) {
           return;
@@ -66,7 +69,22 @@
 
         $audio.currentTime = 0;
         $audio.play();
+        $key.classList.add('playing');
+      };
+
+      const removeTransition = (evt) => {
+        if (evt.propertyName !== 'transform') {
+          return;
+        }
+        evt.currentTarget.classList.remove('playing');
+      };
+
+      const $keys = document.querySelectorAll('.key');
+      $keys.forEach(($key) => {
+        $key.addEventListener('transitionend', removeTransition);
       });
+
+      window.addEventListener('keydown', playSound);
     </script>
   </body>
 </html>
