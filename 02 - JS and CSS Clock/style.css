@@ -38,9 +38,12 @@ body {
 }
 
 .hand {
+  position: absolute;
+  top: 50%;
+  transform-origin: 100%;
+  transform: rotate(90deg);
   width: 50%;
   height: 6px;
   background: black;
-  position: absolute;
-  top: 50%;
+  transition: transform 0.5s ease-in-out;
 }
