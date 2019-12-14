@@ -1,6 +1,6 @@
 html {
   font-size: 10px;
-  font-family: "helvetica neue";
+  font-family: "helvetica neue", "Arial", sans-serif;
   text-align: center;
   background: #018DED url("background.jpg");
   background-size: cover;
