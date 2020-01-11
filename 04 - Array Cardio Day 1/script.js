@@ -106,11 +106,9 @@ console.log(filteredBoulevards);
 
 const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry', 'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul', 'Benchley, Robert', 'Benenson, Peter', 'Ben-Gurion, David', 'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester', 'Benson, Leana', 'Bent, Silas', 'Bentsen, Lloyd', 'Berger, Ric', 'Bergman, Ingmar', 'Berio, Luciano', 'Berle, Milton', 'Berlin, Irving', 'Berne, Eric', 'Bernhard, Sandra', 'Berra, Yogi', 'Berry, Halle', 'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph', 'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank', 'Birrell, Augustine', 'Black, Elk', 'Blair, Robert', 'Blair, Tony', 'Blake, William'];
 
-const getPersonNameParts = (personName) => personName.split(/,\s*/);
-
 const peopleSortedByFirstname = [...people].sort((left, right) => {
-  const leftFirstname = getPersonNameParts(left)[1];
-  const rightFirstname = getPersonNameParts(right)[1];
+  const leftFirstname = left.split(', ')[1];
+  const rightFirstname = right.split(', ')[1];
 
   if (leftFirstname < rightFirstname) {
     return -1;
@@ -126,14 +124,13 @@ console.log(peopleSortedByFirstname);
 
 // 8. Reduce Exercise
 // Sum up the instances of each of these
-const carTypes = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+const transportList = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
 
-// const carTypesAmount = carTypes.reduce((result, type, i, arr) => {
-//   const
-// }, 0);
-
-const getCarTypesAmount = (typeList) => {
-  const typeSet = new Set(typeList);
-  return typeSet.size;
-};
-console.log(getCarTypesAmount(carTypes));
+const transportChart = transportList.reduce((result, item) => {
+  if (!result[item]) {
+    result[item] = 0;
+  }
+  result[item] += 1;
+  return result;
+}, {});
+console.log(transportChart);
