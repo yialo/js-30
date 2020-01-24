@@ -1,15 +1,17 @@
-html {
-  box-sizing: border-box;
-  font-weight: 200;
-  font-size: 20px;
-  font-family: "helvetica neue";
-  background-color: #ffc600;
-}
-
 *,
 *::before,
 *::after {
   box-sizing: inherit;
+}
+
+html {
+  --color-yellow: #ffc600;
+
+  box-sizing: border-box;
+  font-weight: 200;
+  font-size: 20px;
+  font-family: "helvetica neue";
+  background-color: var(--color-yellow);
 }
 
 input {
@@ -69,7 +71,7 @@ span.population {
     rotateX(3deg)
     translateY(2px)
     scale(1.001);
-  background-image: linear-gradient(to bottom, #ffffff 0%,#efefef 100%);
+  background-image: linear-gradient(to bottom, white 0%,#efefef 100%);
 }
 
 .suggestions li:nth-child(odd) {
@@ -77,9 +79,9 @@ span.population {
     perspective(100px)
     rotateX(-3deg)
     translateY(3px);
-  background-image: linear-gradient(to top, #ffffff 0%,#efefef 100%);
+  background-image: linear-gradient(to top, white 0%,#efefef 100%);
 }
 
 .hl {
-  background-color: #ffc600;
+  background-color: var(--color-yellow);
 }
