@@ -1,0 +1,87 @@
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  --color-yellow: #ffc600;
+
+  box-sizing: border-box;
+  font-weight: 200;
+  font-size: 20px;
+  font-family: "helvetica neue";
+  background-color: var(--color-yellow);
+}
+
+input {
+  width: 100%;
+  padding: 20px;
+}
+
+input.search {
+  position: relative;
+  z-index: 2;
+  top: 10px;
+  left: -10%;
+  margin: 0;
+  width: 120%;
+  border: 10px solid #f7f7f7;
+  border-radius: 5px;
+  font-size: 40px;
+  text-align: center;
+  box-shadow:
+    0 0 5px rgba(0, 0, 0, 0.12),
+    inset 0 0 2px rgba(0, 0, 0, 0.19);
+  outline: 0;
+}
+
+span.population {
+  font-size: 15px;
+}
+
+.search-form {
+  margin: 50px auto;
+  max-width: 400px;
+}
+
+.suggestions {
+  position: relative;
+  /*perspective: 20px;*/
+  margin: 0;
+  padding: 0;
+}
+
+.suggestions li {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  border-bottom: 1px solid #d8d8d8;
+  padding: 20px;
+  list-style: none;
+  text-transform: capitalize;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+  transition: background 0.2s;
+}
+
+.suggestions li:nth-child(even) {
+  transform:
+    perspective(100px)
+    rotateX(3deg)
+    translateY(2px)
+    scale(1.001);
+  background-image: linear-gradient(to bottom, white 0%,#efefef 100%);
+}
+
+.suggestions li:nth-child(odd) {
+  transform:
+    perspective(100px)
+    rotateX(-3deg)
+    translateY(3px);
+  background-image: linear-gradient(to top, white 0%,#efefef 100%);
+}
+
+.hl {
+  background-color: var(--color-yellow);
+}
