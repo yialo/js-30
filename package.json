@@ -1,5 +1,8 @@
 {
   "description": "Starter Files + Completed solutions for the JavaScript 30 Day Challenge.",
+  "devDependencies": {
+    "live-server": "1.2.1"
+  },
   "homepage": "https://JavaScript30.com",
   "license": "MIT",
   "name": "js-30",
@@ -9,10 +12,6 @@
     "url": "git+https://github.com/yialo/js-30.git"
   },
   "scripts": {
-    "serve": "live-server"
-  },
-  "version": "0.1.0",
-  "devDependencies": {
-    "live-server": "1.2.1"
+    "start": "live-server"
   }
 }
