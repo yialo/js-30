@@ -16,24 +16,27 @@ const comments = [
 ];
 
 // Some and Every Checks
-// is at least one person 19 or older?
 const THRESHOLD_AGE = 19;
 
-const isAllNineteenOrOlder = people.some(({ year }) => {
-  const birthDate = new Date(year + 1) - 1;
+const isNineteenOrOlader = (birthYear) => {
+  const birthDate = new Date(birthYear + 1) - 1;
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
   const lastMillisecondOfThisYear = new Date(currentYear + 1) - 1;
 
   const isBirthdayGone = currentDate.getTime() === lastMillisecondOfThisYear;
-  const age = currentYear - year - (isBirthdayGone ? 0 : 1);
+  const age = currentYear - birthYear - (isBirthdayGone ? 0 : 1);
 
   return age >= THRESHOLD_AGE;
-});
-console.log(isAllNineteenOrOlder);
+};
+
+// is at least one person 19 or older?
+const isAnybodyNineteenOrOlder = people.some(({ year }) => isNineteenOrOlader(year));
+console.log({isAnybodyNineteenOrOlder});
 
 // is everyone 19 or older?
-// Array.prototype.every()
+const isEverybodyNineteenOrOlder = people.every(({ year }) => isNineteenOrOlader(year));
+console.log({isEverybodyNineteenOrOlder});
 
 // Array.prototype.find()
 // Find is like filter, but instead returns just the one you are looking for
