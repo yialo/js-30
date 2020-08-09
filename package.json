@@ -1,0 +1,19 @@
+{
+  "description": "Starter Files + Completed solutions for the JavaScript 30 Day Challenge.",
+  "devDependencies": {
+    "eslint": "7.6.0",
+    "live-server": "1.2.1",
+    "stylelint": "13.6.1"
+  },
+  "homepage": "https://JavaScript30.com",
+  "license": "MIT",
+  "name": "js-30",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yialo/js-30.git"
+  },
+  "scripts": {
+    "start": "live-server"
+  }
+}
