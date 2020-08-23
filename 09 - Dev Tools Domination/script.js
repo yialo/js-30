@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Console Tricks!</title>
-</head>
-<body>
+'use strict';
 
-  <p onClick="makeGreen()">×BREAK×DOWN×</p>
-
-  <script>
-    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
 
     function makeGreen() {
       const p = document.querySelector('p');
@@ -40,7 +31,3 @@
     // counting
 
     // timing
-
-  </script>
-</body>
-</html>
