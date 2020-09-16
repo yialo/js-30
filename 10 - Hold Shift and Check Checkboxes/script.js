@@ -1,40 +1,3 @@
-const SHIFT_KEY = 'Shift';
-
-const createShiftHandler = () => {
-  let isPressed = false;
-
-  const handleKeyDown = (event) => {
-    if (event.key === SHIFT_KEY) {
-      isPressed = true;
-    }
-  };
-
-  const handleKeyUp = (event) => {
-    if (event.key === SHIFT_KEY) {
-      isPressed = false;
-      addKeyDownListener();
-    }
-  };
-
-  const addKeyDownListener = () => {
-    document.addEventListener('keydown', handleKeyDown, { once: true });
-  }
-
-  const addKeyUpListener = () => {
-    document.addEventListener('keyup', handleKeyUp);
-  }
-
-  return {
-    get isPressed() {
-      return isPressed;
-    },
-    init() {
-      addKeyDownListener();
-      addKeyUpListener();
-    },
-  };
-};
-
 const setCheckboxStateAttribute = ($checkbox, needCheck) => {
   if (needCheck) {
     $checkbox.setAttribute('checked', 'checked');
@@ -44,8 +7,7 @@ const setCheckboxStateAttribute = ($checkbox, needCheck) => {
 };
 
 const createCheckHandler = () => {
-  const $container = document.querySelector('.inbox');
-  const $checkboxes = [...$container.querySelectorAll('input[type="checkbox"]')];
+  const $checkboxes = [...document.querySelectorAll('.inbox input[type="checkbox"]')];
 
   const fillBetween = (firstIndex, secondIndex, needCheck) => {
     let $list = [];
@@ -62,13 +24,15 @@ const createCheckHandler = () => {
     });
   };
 
-  const shiftHandler = createShiftHandler();
-
   let fillStartIndex = null;
   let lastChangedIndex = null;
 
   const handleCheckboxChange = (event) => {
-    const $target = event.target;
+    const {
+      target: $target,
+      shiftKey: isShiftPressed,
+    } = event;
+
     const isJustChecked = $target.checked;
 
     setCheckboxStateAttribute($target, isJustChecked);
@@ -84,7 +48,7 @@ const createCheckHandler = () => {
       return;
     }
 
-    if (shiftHandler.isPressed) {
+    if (isShiftPressed) {
       const isPreviousChecked = $checkboxes[fillStartIndex].checked;
 
       if (isJustChecked) {
@@ -99,9 +63,8 @@ const createCheckHandler = () => {
 
   return {
     init() {
-      shiftHandler.init();
       $checkboxes.forEach(($checkbox) => {
-        $checkbox.addEventListener('change', handleCheckboxChange);
+        $checkbox.addEventListener('click', handleCheckboxChange);
       });
     },
   };
