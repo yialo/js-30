@@ -1,71 +1,111 @@
 const SHIFT_KEY = 'Shift';
 
-const $container = document.querySelector('.inbox');
-const $checkboxes = [...$container.querySelectorAll('input[type="checkbox"]')];
+const createShiftHandler = () => {
+  let isPressed = false;
 
-let isCheckStarted = false;
-let startIndex = null;
-let isShiftPressed = false;
+  const handleKeyDown = (event) => {
+    if (event.key === SHIFT_KEY) {
+      isPressed = true;
+    }
+  };
 
-const checkBetween = (first, second) => {
-  const needCheck = $checkboxes[second].checked;
+  const handleKeyUp = (event) => {
+    if (event.key === SHIFT_KEY) {
+      isPressed = false;
+      addKeyDownListener();
+    }
+  };
 
+  const addKeyDownListener = () => {
+    document.addEventListener('keydown', handleKeyDown, { once: true });
+  }
+
+  const addKeyUpListener = () => {
+    document.addEventListener('keyup', handleKeyUp);
+  }
+
+  return {
+    get isPressed() {
+      return isPressed;
+    },
+    init() {
+      addKeyDownListener();
+      addKeyUpListener();
+    },
+  };
+};
+
+const setCheckboxStateAttribute = ($checkbox, needCheck) => {
   if (needCheck) {
+    $checkbox.setAttribute('checked', 'checked');
+  } else {
+    $checkbox.removeAttribute('checked');
+  }
+};
+
+const createCheckHandler = () => {
+  const $container = document.querySelector('.inbox');
+  const $checkboxes = [...$container.querySelectorAll('input[type="checkbox"]')];
+
+  const fillBetween = (firstIndex, secondIndex, needCheck) => {
     let $list = [];
 
-    if (first < second) {
-      $list = $checkboxes.slice(first + 1, second);
-    } else if (first > second) {
-      $list = $checkboxes.slice(second + 1, first);
+    if (firstIndex < secondIndex) {
+      $list = $checkboxes.slice(firstIndex + 1, secondIndex);
+    } else {
+      $list = $checkboxes.slice(secondIndex + 1, firstIndex);
     }
 
     $list.forEach(($checkbox) => {
-      $checkbox.checked = true;
+      setCheckboxStateAttribute($checkbox, needCheck);
+      $checkbox.checked = needCheck;
     });
-  }
-}
+  };
 
-const handleKeyDown = (event) => {
-  if (event.key === SHIFT_KEY) {
-    isShiftPressed = true;
-  }
-};
+  const shiftHandler = createShiftHandler();
 
-const addKeyDownListener = () => {
-  document.addEventListener('keydown', handleKeyDown, { once: true });
-};
+  let fillStartIndex = null;
+  let lastChangedIndex = null;
 
-const addKeyUpListener = () => {
-  document.addEventListener('keyup', (event) => {
-    if (event.key === SHIFT_KEY) {
-      isShiftPressed = false;
-      addKeyDownListener();
-    }
-  });
-};
+  const handleCheckboxChange = (event) => {
+    const $target = event.target;
+    const isJustChecked = $target.checked;
 
-const handleCheck = (event) => {
-  const inputIndex = $checkboxes.indexOf(event.target);
+    setCheckboxStateAttribute($target, isJustChecked);
 
-  if (isCheckStarted) {
-    if (isShiftPressed) {
-      checkBetween(startIndex, inputIndex);
+    lastChangedIndex = $checkboxes.indexOf($target);
+
+    if (fillStartIndex === lastChangedIndex) {
+      return;
     }
 
-    startIndex = null;
-  } else {
-    startIndex = inputIndex;
-  }
+    if (fillStartIndex === null) {
+      fillStartIndex = lastChangedIndex;
+      return;
+    }
 
-  isCheckStarted = !isCheckStarted;
+    if (shiftHandler.isPressed) {
+      const isPreviousChecked = $checkboxes[fillStartIndex].checked;
+
+      if (isJustChecked) {
+        fillBetween(fillStartIndex, lastChangedIndex, true);
+      } else if (!isPreviousChecked) {
+        fillBetween(fillStartIndex, lastChangedIndex, false);
+      }
+    }
+
+    fillStartIndex = lastChangedIndex;
+  };
+
+  return {
+    init() {
+      shiftHandler.init();
+      $checkboxes.forEach(($checkbox) => {
+        $checkbox.addEventListener('change', handleCheckboxChange);
+      });
+    },
+  };
 };
 
-const init = () => {
-  $checkboxes.forEach(($checkbox) => {
-    $checkbox.addEventListener('change', handleCheck);
-  })
-  addKeyDownListener();
-  addKeyUpListener();
-};
-
-init();
+const checkHandler = createCheckHandler();
+checkHandler.init();
