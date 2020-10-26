@@ -59,6 +59,11 @@ body {
   cursor: pointer;
 }
 
+.player__button_fullscreen {
+  width: 30px;
+  max-width: 30px;
+}
+
 .player__button:focus {
   border-color: var(--color_yellow);
 }
