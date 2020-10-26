@@ -10,13 +10,6 @@ const $ranges = $player.querySelectorAll('[type="range"]');
 
 // Build our handlers
 
-const setProgressPosition = (percentage) => {
-  $progressFilled.style.flexBasis = `${percentage}%`;
-  $progressBar.setAttribute('aria-valuenow', percentage);
-  const rounded = Math.round(percentage);
-  $progressBar.setAttribute('aria-valuetext', `Playback position: ${rounded}%`);
-};
-
 const togglePlay = () => {
   const method = $video.paused ? 'play' : 'pause';
   $video[method]();
@@ -38,18 +31,17 @@ const handleRangeUpdate = (event) => {
   $video[$range.name] = $range.value;
 };
 
-const handleProgress = () => {
+const handleVideoTimeUpdate = () => {
   const percentage = $video.currentTime / $video.duration * 100;
-  setProgressPosition(percentage);
+  $progressFilled.style.flexBasis = `${percentage}%`;
+  $progressBar.setAttribute('aria-valuenow', percentage);
+  const rounded = Math.round(percentage);
+  $progressBar.setAttribute('aria-valuetext', `Playback position: ${rounded}%`);
 };
 
 const handleProgressBarClick = (event) => {
   const factor = event.offsetX / $progressBar.offsetWidth;
-  console.log(factor);
   $video.currentTime = $video.duration * factor;
-
-  const percentage = factor * 100;
-  setProgressPosition(percentage);
 };
 
 // Hook up the event listeners
@@ -69,4 +61,4 @@ $skipButtons.forEach(($button) => {
 $video.addEventListener('click', togglePlay);
 $video.addEventListener('play', updateButton);
 $video.addEventListener('pause', updateButton);
-$video.addEventListener('timeupdate', handleProgress);
+$video.addEventListener('timeupdate', handleVideoTimeUpdate);
