@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>HTML Video Player</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="style.css">
     <script src="script.js" type="module"></script>
   </head>
   <body>
@@ -11,8 +11,8 @@
       <video class="player__video viewer" src="video.mp4"></video>
 
       <div class="player__controls">
-        <div class="progress">
-          <div class="progress__filled"></div>
+        <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="Current position: 0%">
+          <div class="progress__filled" aria-hidden="true"></div>
         </div>
         <button class="player__button toggle" aria-label="Play" aria-pressed="false" title="Toggle Play">▶</button>
         <input type="range" name="volume" class="player__slider" min="0" max="1" step="0.05" value="1">

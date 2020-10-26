@@ -103,8 +103,8 @@ body {
 }
 
 .progress__filled {
-  flex: 0 0 50%;
-  width: 50%;
+  flex-grow: 0;
+  flex-shrink: 0;
   background-color: var(--color_yellow);
 }
 
