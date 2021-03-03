@@ -1,17 +1,15 @@
 {
-  "description": "Starter Files + Completed solutions for the JavaScript 30 Day Challenge.",
+  "name": "learn_wes-bos-js-30-days-challenge",
+  "private": true,
+  "scripts": {
+    "start": "live-server"
+  },
   "devDependencies": {
     "live-server": "1.2.1"
   },
   "homepage": "https://JavaScript30.com",
-  "license": "MIT",
-  "name": "js-30",
-  "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yialo/js-30.git"
-  },
-  "scripts": {
-    "start": "live-server"
+    "url": "git+https://github.com/yialo/learn_wes-bos-js-30-days-challenge.git"
   }
 }
