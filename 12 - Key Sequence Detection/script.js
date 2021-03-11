@@ -1,7 +1,11 @@
 const pressedKeys = [];
 const secretCode = 'konami';
 
-const $code = document.getElementById('code');
+const createCodeParagraph = () => {
+  const $paragraph = document.createElement('p');
+  $paragraph.textContent = 'KONAMI';
+  document.body.appendChild($paragraph);
+};
 
 window.addEventListener('keyup', ({ key }) => {
   pressedKeys.push(key);
@@ -10,9 +14,7 @@ window.addEventListener('keyup', ({ key }) => {
     pressedKeys.shift();
   }
 
-  console.log(pressedKeys);
-
   if (pressedKeys.join('').includes(secretCode)) {
-    $code.style.display = 'block';
+    createCodeParagraph();
   }
 });
