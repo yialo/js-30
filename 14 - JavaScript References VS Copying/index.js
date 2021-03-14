@@ -1,42 +1,35 @@
-// start with strings, numbers and booleans
-
-// Let's say we have an array
+// Arrays
 const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
 
-// and we want to make a copy of it.
+const team = players;
+console.log('team === players: ', team === players);
 
-// You might think we can just do something like this:
+const team1 = players.slice();
+console.log('team1 === players: ', team1 === players);
 
-// however what happens when we update that array?
+const team2 = [].concat(players);
+console.log('team2 === players: ', team2 === players);
 
-// now here is the problem!
+const team3 = [...players];
+console.log('team3 === players: ', team3 === players);
 
-// oh no - we have edited the original array too!
+const team4 = Array.from(players);
+console.log('team4 === players: ', team4 === players);
 
-// Why? It's because that is an array reference, not an array copy. They both point to the same array!
-
-// So, how do we fix this? We take a copy instead!
-
-// one way
-
-// or create a new array and concat the old one in
-
-// or use the new ES6 Spread
-
-// now when we update it, the original one isn't changed
-
-// The same thing goes for objects, let's say we have a person object
-
-// with Objects
+// Plain objects
 const person = {
   name: 'Wes Bos',
   age: 80
 };
 
-// and think we make a copy:
+const captain = person;
+console.log('captain === person: ', captain === person);
 
-// how do we take a copy instead?
+const captain1 = Object.assign({}, person);
+console.log('captain1 === person: ', captain1 === person);
 
-// We will hopefully soon see the object ...spread
+const captain2 = {...person};
+console.log('captain2 === person: ', captain2 === person);
 
-// Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+const captain3 = JSON.parse(JSON.stringify(captain));
+console.log('captain3 === person: ', captain3 === person);
