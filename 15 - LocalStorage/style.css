@@ -1,6 +1,12 @@
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
 html {
   box-sizing: border-box;
-  background: url("oh-la-la.jpeg") center no-repeat;
+  background: url("./oh-la-la.jpg") center no-repeat;
   background-size: cover;
   min-height: 100vh;
   display: flex;
@@ -10,10 +16,8 @@ html {
   font-family: Futura, "Trebuchet MS", Arial, sans-serif;
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
+body {
+  margin: 10px;
 }
 
 svg {
@@ -21,8 +25,13 @@ svg {
   background: rgba(0, 0, 0, 0.1);
   padding: 20px;
   border-radius: 50%;
-  width: 200px;
   margin-bottom: 50px;
+}
+
+h2 {
+  text-align: center;
+  margin: 0;
+  font-weight: 200;
 }
 
 .wrapper {
@@ -30,12 +39,6 @@ svg {
   max-width: 350px;
   background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-  text-align: center;
-  margin: 0;
-  font-weight: 200;
 }
 
 .plates {
@@ -61,12 +64,12 @@ h2 {
   display: none;
 }
 
-.plates input + label:before {
+.plates input + label::before {
   content: "⬜️";
   margin-right: 10px;
 }
 
-.plates input:checked + label:before {
+.plates input:checked + label::before {
   content: "🌮";
 }
 
