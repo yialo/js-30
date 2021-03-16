@@ -19,13 +19,18 @@
 
     <div class="wrapper">
       <h2>LOCAL TAPAS</h2>
-      <p></p>
       <ul class="plates"></ul>
-      <form class="add-items">
-        <input type="text" name="item" placeholder="Item Name" required>
-        <input type="submit" value="+ Add Item">
+
+      <div class="controls">
+        <button class="control" type="button" id="check">Check all</button>
+        <button class="control" type="button" id="uncheck">Uncheck all</button>
+        <button class="control" type="button" id="clear">Clear list</button>
+      </div>
+
+      <form>
+        <input class="control" type="text" name="item" placeholder="Item Name" required>
+        <button class="control" type="submit">+ Add Item</button>
       </form>
     </div>
   </body>
 </html>
-

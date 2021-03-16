@@ -1,9 +1,32 @@
-const $addItems = document.querySelector('.add-items');
+const $form = document.querySelector('form');
 const $platesList = document.querySelector('.plates');
+const $checkButton = document.getElementById('check');
+const $uncheckButton = document.getElementById('uncheck');
+const $clearButton = document.getElementById('clear');
 
 let plates = [];
 
-const addItem = (event) => {
+const updateStorage = () => {
+  localStorage.setItem('plates', JSON.stringify(plates));
+};
+
+const renderList = () => {
+  $platesList.innerHTML = plates.reduce((acc, { text, isDone }, i) => {
+    const id = `item-${i}`;
+
+    return (
+      `${acc}
+      <li>
+        <input type="checkbox" id="${id}"${isDone ? ' checked' : ''} data-index="${i}">
+        <label for="${id}">${text}</label>
+      </li>`
+    );
+  }, '')
+    .replace(/\s+</g, '<')
+    .replace(/>\s+/g, '>');
+};
+
+const handleItemAddition = (event) => {
   event.preventDefault();
 
   const plate = {
@@ -14,40 +37,69 @@ const addItem = (event) => {
   plates.push(plate);
   event.target.reset();
 
-  populateList();
-  localStorage.setItem('plates', JSON.stringify(plates));
+  updateStorage();
+  renderList();
 };
 
-const populateList = () => {
-  $platesList.innerHTML = plates.reduce((acc, { text, isDone }, i) => {
-    const id = `item-${i}`;
+const handleItemStateChange = (event) => {
+  event.preventDefault();
 
-    return (
-      `${acc}
-      <li>
-        <input type="checkbox" id="${id}"${isDone ? ' checked' : ''}>
-        <label for="${id}">${text}</label>
-      </li>`
-    );
-  }, '')
-    .replace(/\s+</g, '<')
-    .replace(/>\s+/g, '>');
+  const $target = event.target;
+
+  if (!$target.matches('input')) {
+    return;
+  }
+
+  const { index } = $target.dataset;
+  plates[index].isDone = !plates[index].isDone;
+
+  updateStorage();
+  renderList();
+};
+
+const handleCheckAll = () => {
+  plates.forEach((plate) => {
+    plate.isDone = true;
+  });
+
+  updateStorage();
+  renderList();
+};
+
+const handleUncheckAll = () => {
+  plates.forEach((plate) => {
+    plate.isDone = false;
+  });
+
+  updateStorage();
+  renderList();
+};
+
+const handleClear = () => {
+  plates = [];
+
+  updateStorage();
+  renderList();
 };
 
 const init = () => {
   try {
     const savedPlates = JSON.parse(localStorage.getItem('plates'));
 
-    if (savedPlates) {
+    if (savedPlates !== null) {
       plates = savedPlates;
     }
   } catch {
     window.alert('Ooops, we cannot load saved plates');
   }
 
-  populateList();
+  $form.addEventListener('submit', handleItemAddition);
+  $platesList.addEventListener('change', handleItemStateChange);
+  $checkButton.addEventListener('click', handleCheckAll);
+  $uncheckButton.addEventListener('click', handleUncheckAll);
+  $clearButton.addEventListener('click', handleClear);
 
-  $addItems.addEventListener('submit', addItem);
+  renderList();
 };
 
 init();
