@@ -1,0 +1,90 @@
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  --color-black: rgb(0 0 0 / 0.1);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 100vh;
+  font-family: "Futura", "Trebuchet MS", "Arial", sans-serif;
+  text-align: center;
+  background: url("./oh-la-la.jpg") center / cover no-repeat;
+}
+
+body {
+  margin: 10px;
+}
+
+svg {
+  margin-bottom: 50px;
+  border-radius: 50%;
+  padding: 20px;
+  fill: white;
+  background-color: var(--color-black);
+}
+
+h2 {
+  margin: 0;
+  font-weight: 200;
+  text-align: center;
+}
+
+form {
+  margin-top: 20px;
+}
+
+.wrapper {
+  max-width: 350px;
+  padding: 20px;
+  background-color: rgb(255 255 255 / 0.95);
+  box-shadow: 0 0 0 10px var(--color-black);
+}
+
+.plates {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  text-align: left;
+}
+
+.plates li {
+  border-bottom: 1px solid rgb(0 0 0 / 0.2);
+  padding: 10px 0;
+  font-weight: 100;
+  display: flex;
+}
+
+.plates label {
+  flex: 1;
+  cursor: pointer;
+}
+
+.plates input {
+  display: none;
+}
+
+.plates input + label::before {
+  content: "⬜️";
+  margin-right: 10px;
+}
+
+.plates input:checked + label::before {
+  content: "🌮";
+}
+
+.control {
+  padding: 10px;
+  outline: 0;
+  border: 1px solid var(--color-black);
+}
+
+.controls {
+  margin-top: 20px;
+  text-align: left;
+}
