@@ -1,3 +1,8 @@
+const $addItems = document.querySelector('.add-items');
+const $platesList = document.querySelector('.plates');
+
+let plates = [];
+
 const addItem = (event) => {
   event.preventDefault();
 
@@ -28,11 +33,6 @@ const populateList = () => {
     .replace(/\s+</g, '<')
     .replace(/>\s+/g, '>');
 };
-
-const $addItems = document.querySelector('.add-items');
-const $platesList = document.querySelector('.plates');
-
-let plates = [];
 
 const init = () => {
   try {
