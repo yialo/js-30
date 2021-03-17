@@ -9,7 +9,6 @@ body {
 
 h1 {
   font-size: 100px;
-  text-shadow: 10px 10px 0 black;
 }
 
 .hero {
@@ -17,5 +16,4 @@ h1 {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  color: black;
 }
