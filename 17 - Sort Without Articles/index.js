@@ -1,8 +1,8 @@
 const BANDS = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
-const removeArticle = (str) => str.replace(/^(the|an?) /i, '');
+const removeArticle = (str) => str.trim().replace(/^(the|an?) /i, '');
 
-const sortWithoutArticles = (nameList) => nameList.sort((left, right) => {
+const sortBandsWithoutArticles = () => BANDS.sort((left, right) => {
   const leftWithoutArticle = removeArticle(left);
   const rightWithoutArticle = removeArticle(right);
 
@@ -17,8 +17,14 @@ const sortWithoutArticles = (nameList) => nameList.sort((left, right) => {
   return 0;
 });
 
+const $bands = document.getElementById('bands');
+
 const init = () => {
-  console.log(sortWithoutArticles(BANDS));
+  const sortedBands = sortBandsWithoutArticles();
+  $bands.innerHTML = sortedBands.reduce((acc, band) => (
+    `${acc}
+    <li>${band}</li>`
+  ), '').replace(/\n\s*/g, '');
 };
 
 init();
