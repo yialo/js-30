@@ -7,7 +7,7 @@
 html {
   box-sizing: border-box;
   font-size: 10px;
-  background: #ffc600;
+  background-color: #ffc600;
 }
 
 body {
@@ -15,13 +15,12 @@ body {
 }
 
 .photobooth {
-  background: white;
-  max-width: 150rem;
   margin: 2rem auto;
+  max-width: 150rem;
   border-radius: 2px;
+  background-color: white;
 }
 
-/* Clearfix */
 .photobooth::after {
   content: "";
   display: block;
@@ -37,10 +36,10 @@ body {
   position: absolute;
   top: 20px;
   right: 20px;
-  width:200px;
+  width: 200px;
 }
 
-/* Strip! */
+/* Strip */
 
 .strip {
   padding: 2rem;
@@ -50,8 +49,8 @@ body {
   width: 100px;
   overflow-x: scroll;
   padding: 0.8rem 0.8rem 2.5rem 0.8rem;
-  box-shadow: 0 0 3px rgba(0,0,0,0.2);
-  background: white;
+  background-color: white;
+  box-shadow: 0 0 3px rgb(0 0 0 / 0.2);
 }
 
 .strip a:nth-child(5n+1) img {
