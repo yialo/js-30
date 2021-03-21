@@ -1,0 +1,76 @@
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 10px;
+  background-color: #ffc600;
+}
+
+body {
+  margin: 0;
+}
+
+.photobooth {
+  margin: 2rem auto;
+  max-width: 150rem;
+  border-radius: 2px;
+  background-color: white;
+}
+
+.rgb {
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(4, auto);
+  justify-content: start;
+  align-items: center;
+  padding: 1rem;
+}
+
+.photo {
+  display: block;
+  width: 100%;
+}
+
+.player {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 200px;
+}
+
+/* Strip */
+
+.strip_with-padding {
+  padding: 2rem;
+}
+
+.strip img {
+  width: 100px;
+  overflow-x: scroll;
+  padding: 0.8rem 0.8rem 2.5rem 0.8rem;
+  background-color: white;
+  box-shadow: 0 0 3px rgb(0 0 0 / 0.2);
+}
+
+.strip a:nth-child(5n+1) img {
+  transform: rotate(10deg);
+}
+
+.strip a:nth-child(5n+2) img {
+  transform: rotate(-2deg);
+}
+
+.strip a:nth-child(5n+3) img {
+  transform: rotate(8deg);
+}
+
+.strip a:nth-child(5n+4) img {
+  transform: rotate(-11deg);
+}
+
+.strip a:nth-child(5n+5) img {
+  transform: rotate(12deg);
+}
