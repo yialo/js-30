@@ -1,14 +1,17 @@
-html {
-  box-sizing: border-box;
-}
-
-*, *:before, *:after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
 html {
+  box-sizing: border-box;
   font-size: 10px;
   background: #ffc600;
+}
+
+body {
+  margin: 0;
 }
 
 .photobooth {
@@ -18,9 +21,9 @@ html {
   border-radius: 2px;
 }
 
-/*clearfix*/
-.photobooth:after {
-  content: '';
+/* Clearfix */
+.photobooth::after {
+  content: "";
   display: block;
   clear: both;
 }
@@ -37,9 +40,7 @@ html {
   width:200px;
 }
 
-/*
-  Strip!
-*/
+/* Strip! */
 
 .strip {
   padding: 2rem;
@@ -53,8 +54,22 @@ html {
   background: white;
 }
 
-.strip a:nth-child(5n+1) img { transform: rotate(10deg); }
-.strip a:nth-child(5n+2) img { transform: rotate(-2deg); }
-.strip a:nth-child(5n+3) img { transform: rotate(8deg); }
-.strip a:nth-child(5n+4) img { transform: rotate(-11deg); }
-.strip a:nth-child(5n+5) img { transform: rotate(12deg); }
+.strip a:nth-child(5n+1) img {
+  transform: rotate(10deg);
+}
+
+.strip a:nth-child(5n+2) img {
+  transform: rotate(-2deg);
+}
+
+.strip a:nth-child(5n+3) img {
+  transform: rotate(8deg);
+}
+
+.strip a:nth-child(5n+4) img {
+  transform: rotate(-11deg);
+}
+
+.strip a:nth-child(5n+5) img {
+  transform: rotate(12deg);
+}
