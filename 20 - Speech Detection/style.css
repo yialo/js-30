@@ -3,23 +3,24 @@ html {
 }
 
 body {
-  background: #ffc600;
+  background-color: #ffc600;
   font-family: "Helvetica Neue", sans-serif;
   font-weight: 200;
   font-size: 20px;
 }
 
 .words {
-  max-width: 500px;
-  margin: 50px auto;
-  background: white;
-  border-radius: 5px;
-  box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
-  padding: 1rem 2rem 1rem 5rem;
-  background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #fff)) 0 4px;
-  background-size: 100% 3rem;
   position: relative;
+  margin: 50px auto;
+  max-width: 500px;
+  border-radius: 5px;
+  padding: 1rem 2rem 1rem 5rem;
   line-height: 3rem;
+  background-color: white;
+  background-image: linear-gradient(to bottom, #d9eaf3 1px, white 1px);
+  background-position-y: 4px;
+  background-size: 100% 3rem;
+  box-shadow: 10px 10px 0 rgb(0 0 0 / 0.1);
 }
 
 p {
@@ -29,10 +30,10 @@ p {
 .words::before {
   content: "";
   position: absolute;
-  width: 4px;
   top: 0;
   left: 30px;
   bottom: 0;
+  width: 4px;
   border: 1px solid;
   border-color: transparent #efe4e4;
 }
