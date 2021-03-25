@@ -11,6 +11,7 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
+  padding-top: 100px;
   font-family: sans-serif;
   background-image:
     linear-gradient(45deg, hsl(340 100% 55%) 0%, hsl(340 100% 55% / 0) 70%),
@@ -39,7 +40,6 @@ a {
   z-index: -1;
   top: 0;
   left: 0;
-  display: block;
   border-bottom: 2px solid white;
   border-radius: 20px;
   background-color: white;
@@ -50,8 +50,9 @@ a {
 .menu {
   display: flex;
   justify-content: center;
-  margin: 100px 0;
-  padding: 0;
+  margin-top: 0;
+  margin-bottom: 100px;
+  padding-left: 0;
   list-style-type: none;
 }
 
