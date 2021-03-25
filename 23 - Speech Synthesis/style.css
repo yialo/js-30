@@ -58,7 +58,7 @@ h1 {
   display: block;
   margin: 10px 0;
   width: 100%;
-  border-style: 0;
+  border-style: none;
   padding: 10px;
   font-size: 2rem;
   background-color: #f7f7f7;
@@ -69,16 +69,12 @@ textarea {
   height: 20rem;
 }
 
-input[type="select"] {
-
-}
-
 .voiceinator button {
   position: relative;
   float: left;
   margin-bottom: 0;
   width: 49%;
-  border-style: 0;
+  border-style: none;
   border-bottom: 5px solid #f3c010;
   font-family: "Pacifico", cursive;
   font-size: 2rem;
