@@ -32,6 +32,7 @@ $options.forEach(($option) => {
   $option.addEventListener('change', ({ target }) => {
     speechSynthesis.cancel();
     msg[target.name] = target.value;
+    speechSynthesis.speak(msg);
   });
 });
 
@@ -41,6 +42,7 @@ $voices.addEventListener('change', (event) => {
 });
 
 $speakButton.addEventListener('click', () => {
+  speechSynthesis.cancel();
   speechSynthesis.speak(msg);
 });
 
