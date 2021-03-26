@@ -1,0 +1,26 @@
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+div {
+  width: 100%;
+  padding: 100px;
+}
+
+.one {
+  background-color: thistle;
+}
+
+.two {
+  background-color: mistyrose;
+}
+
+.three {
+  background-color: coral;
+}
