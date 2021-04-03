@@ -29,7 +29,6 @@ body {
   height: 800px;
   width: 100%;
   overflow-x: scroll;
-  overflow-y: hidden;
   border: 1px solid white;
   padding: 100px;
   background-color: rgb(255 255 255 / 0.1);
