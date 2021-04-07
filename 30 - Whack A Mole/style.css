@@ -12,14 +12,23 @@ html {
 
 body {
   margin: 0;
+  padding-top: 32px;
   font-family: "Amatic SC", cursive;
 }
 
-h1 {
-  margin-bottom: 0;
+.heading {
+  margin-top: 0;
+  margin-bottom: 8px;
   font-size: 10rem;
   line-height: 1;
   text-align: center;
+}
+
+.start-button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 24px;
 }
 
 .score {
